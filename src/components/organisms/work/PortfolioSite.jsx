@@ -1,0 +1,19 @@
+import React from "react";
+
+import WorkCard from "components/molecules/WorkCard";
+
+const PortfolioSite = () => (
+  <>
+    <WorkCard
+      name="portfolioSite"
+      title="ポートフォリオサイト"
+      description="
+        本ポートフォリオサイトをスクラッチ開発しました。
+        サーバーサイドのポジションを目指しているため、UIを考えながらも短時間で作成することを意識し5日(約30時間)で作成しました。
+        工数削減のため、デプロイをGitHub Pages、開発をReactにてMaterial UIを積極的に利用しています。
+        "
+    />
+  </>
+);
+
+export default PortfolioSite;
