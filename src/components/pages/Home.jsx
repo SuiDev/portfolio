@@ -15,18 +15,21 @@ import backGroundImage from "assets/back_ground.jpg";
 export const MediaContext = createContext()
 
 const Home = () => {
-  // ユーザーメディアが1180px以上のときtrue,1180px以下のときfalseを返します。
+  // 画面の横幅が1180px以上のときtrue,1180px以下のときfalseを返します。
   const isPCScreen = useMediaQuery({ query: "(min-width: 1180px)"})
-  // ユーザーメディアが768px以下のときtrue,768px以上のときfalseを返します。
-  const isMobileScreen = useMediaQuery({ query: "(max-width: 768px)"})
-  // ユーザーメディアが1180px以下のときtrue,1180px以上のときfalseを返します。
-  const isTabletScreen = useMediaQuery({ query: "(max-width: 1180px)"})
+  // 画面の横幅が820px以下のときtrue,820px以上のときfalseを返します。
+  const isTabletScreen = useMediaQuery({ query: "(max-width: 820px)"})
+  // 画面の横幅が600px以下のときtrue,600px以上のときfalseを返します。
+  const isMobileScreen = useMediaQuery({ query: "(max-width: 600px)"})
+  // 画面の横幅が880px以下のときtrue,880px以上のときfalseを返します。
+  const headerResponsiveEdge = useMediaQuery({ query: "(max-width: 880px)"})
 
   // コンテキストで渡すユーザーメディアデータです。
   const mediaData = {
     "isPCScreen": isPCScreen,
     "isMobileScreen": isMobileScreen,
-    "isTablet": isTabletScreen
+    "isTabletScreen": isTabletScreen,
+    "headerResponsiveEdge": headerResponsiveEdge
   }
 
   return (

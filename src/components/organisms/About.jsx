@@ -79,8 +79,8 @@ const About = () => {
         <MediaContext.Consumer>
           {media =>
             <>
-              {media.isPCScreen ?
-                // PCの表示
+              {!media.isTabletScreen ?
+                // タブレットサイズ以上の表示
                 <Grid 
                   container
                   spacing={2}
@@ -91,7 +91,7 @@ const About = () => {
                   />
                   <Grid
                     item
-                    xs={3}
+                    xs={4}
                   >
                     <ProfileIcons>
                       <img
@@ -105,6 +105,109 @@ const About = () => {
                       </p>
                     </ProfileIcons>
                     <ProfileDetail />
+                    <Grid
+                      container={true}
+                      item
+                    >
+                      <Grid
+                        item={true}
+                        xs={7}
+                      >
+                        {/** GitHubリンク */}
+                        <LinkIcons>
+                          <a 
+                            href="https://github.com/SuiDev"
+                            rel="noreferrer"
+                            target="_blank"
+                          >
+                            <img
+                              alt="GitHubアイコン"
+                              src={GitHubIcon}
+                              width={45}
+                              height={45}
+                            />
+                          </a>
+                        </LinkIcons>
+                      </Grid>
+                      <Grid
+                        item={true}
+                        xs={1}
+                      >
+                        {/** Twitterリンク */}
+                        <LinkIcons>
+                          <a 
+                            href="https://twitter.com/sui89413753"
+                            rel="noreferrer"
+                            target="_blank"
+                          >
+                            <img
+                              alt="Twitterアイコン"
+                              src={TwitterIcon}
+                              width={54}
+                              height={42}
+                            />
+                          </a>
+                        </LinkIcons>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={6}
+                  >
+                    <SubTitle>
+                      経歴
+                    </SubTitle>
+                    <ProfileHistory />
+                    <SubTitle>
+                      メッセージ
+                    </SubTitle>
+                    <ProfileMessage />
+                  </Grid>
+                  <Grid
+                    item
+                    xs={1}
+                  />
+                </Grid>
+                :
+                // タブレットサイズ以下の表示
+                <Grid 
+                  container
+                >
+                  <Grid
+                    item
+                    xs={12}
+                  >
+                    <ProfileIcons>
+                      <img
+                        alt="プロフィールアイコン"
+                        src={ProfileIcon}
+                        width={200}
+                        height={200}
+                      />
+                      <Name>
+                        すいすい
+                      </Name>
+                    </ProfileIcons>
+                    <Grid
+                      container={true}
+                      item
+                    >
+                      <Grid
+                        item={true}
+                        xs={1}
+                      />
+                      <Grid
+                        item={true}
+                        xs={10}
+                      >
+                      <ProfileDetail />
+                      </Grid>
+                      <Grid
+                        item={true}
+                        xs={1}
+                      />
+                    </Grid>
                     <Grid
                       container={true}
                       item
@@ -153,11 +256,7 @@ const About = () => {
                   </Grid>
                   <Grid
                     item
-                    xs={1}
-                  />
-                  <Grid
-                    item
-                    xs={6}
+                    xs={12}
                   >
                     <SubTitle>
                       経歴
@@ -168,110 +267,7 @@ const About = () => {
                     </SubTitle>
                     <ProfileMessage />
                   </Grid>
-                  <Grid
-                    item
-                    xs={1}
-                  />
                 </Grid>
-                :
-                // PC以外の表示
-                  <Grid 
-                    container
-                  >
-                    <Grid
-                      item
-                      xs={12}
-                    >
-                      <ProfileIcons>
-                        <img
-                          alt="プロフィールアイコン"
-                          src={ProfileIcon}
-                          width={200}
-                          height={200}
-                        />
-                        <Name>
-                          すいすい
-                        </Name>
-                      </ProfileIcons>
-                      <Grid
-                        container={true}
-                        item
-                      >
-                        <Grid
-                          item={true}
-                          xs={1}
-                        />
-                        <Grid
-                          item={true}
-                          xs={8}
-                        >
-                        <ProfileDetail />
-                        </Grid>
-                        <Grid
-                          item={true}
-                          xs={3}
-                        />
-                      </Grid>
-                      <Grid
-                        container={true}
-                        item
-                      >
-                        <Grid
-                          item={true}
-                          xs={6}
-                        >
-                          {/** GitHubリンク */}
-                          <LinkIcons>
-                            <a 
-                              href="https://github.com/SuiDev"
-                              rel="noreferrer"
-                              target="_blank"
-                            >
-                              <img
-                                alt="GitHubアイコン"
-                                src={GitHubIcon}
-                                width={45}
-                                height={45}
-                              />
-                            </a>
-                          </LinkIcons>
-                        </Grid>
-                        <Grid
-                          item={true}
-                          xs={6}
-                        >
-                          {/** Twitterリンク */}
-                          <LinkIcons>
-                            <a 
-                              href="https://twitter.com/sui89413753"
-                              rel="noreferrer"
-                              target="_blank"
-                            >
-                              <img
-                                alt="Twitterアイコン"
-                                src={TwitterIcon}
-                                width={54}
-                                height={42}
-                              />
-                            </a>
-                          </LinkIcons>
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                    <Grid
-                      item
-                      xs={12}
-                    >
-                      <SubTitle>
-                        経歴
-                      </SubTitle>
-                      <ProfileHistory />
-                      <SubTitle>
-                        メッセージ
-                      </SubTitle>
-                      <ProfileMessage />
-                    </Grid>
-                  </Grid>
               }
             </>  
           }
@@ -284,7 +280,7 @@ const About = () => {
 
 // プロフィールCSS
 const AboutStyle = styled.div`
-  height: calc(100vh - 65px);
+  min-height: calc(100vh - 65px);
   background-color: white;
 
   ${customMedia.lessThan("pc")`
@@ -346,7 +342,11 @@ const PStyle = styled.p`
   line-height: 1.5;
 
   ${customMedia.lessThan("pc")`
-    margin: 0 70px 13px 70px;
+    margin: 0 0 13px 20px;
+  `};
+
+  ${customMedia.lessThan("tablet")`
+    margin: 0 20px 13px 20px;
   `};
 
   ${customMedia.lessThan("mobile")`
@@ -356,8 +356,22 @@ const PStyle = styled.p`
 
 // スマホ・タブレットで表示時のプロフィール詳細CSS
 const MobileDetailStyle = styled.div`
+  margin: 0 0 13px 45px;
+  
   ${customMedia.lessThan("pc")`
-    margin: 0 0 13px 40px;
+    margin: 0 0 13px 20px;
+  `};
+
+  ${customMedia.lessThan("tablet")`
+    margin: 0 0 13px 200px;
+  `};
+
+  ${customMedia.lessThan("mobile")`
+    margin: 0 0 13px 100px;
+  `};
+
+  ${customMedia.lessThan("smartphone")`
+    margin: 0 30px 13px 50px;
   `};
 `;
 

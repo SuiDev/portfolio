@@ -6,7 +6,7 @@ const PortfolioSite = () => (
   <>
     <WorkCard
       name="portfolioSite"
-      title="ポートフォリオサイト"
+      title="ポートフォリオ"
       url="https://suidev.github.io/portfolio/"
       description="
         本サイトをスクラッチ開発しました。

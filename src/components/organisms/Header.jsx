@@ -41,7 +41,28 @@ const Header = () => {
             >
               <Toolbar>
                 {/** ページタイトル */}
-                {!media.isMobileScreen ?
+                {media.isMobileScreen ?
+                  // スマートフォンの表示
+                  <>
+                    <Typography
+                      sx={{
+                        flexGrow: 1,
+                        ml: 1
+                      }}
+                      variant="body1"
+                      color="black"
+                    >
+                      <Scroll
+                        to="top"
+                        smooth={true}
+                        duration={600}
+                        offset={-64}
+                      >
+                        SuiSui’s Portfolio
+                      </Scroll>
+                    </Typography>
+                  </>
+                  :
                   // スマートフォン以外の表示
                   <>
                     <Typography
@@ -62,30 +83,9 @@ const Header = () => {
                       </Scroll>
                     </Typography>
                   </> 
-                  :
-                  // スマートフォンの表示
-                  <>
-                    <Typography
-                      sx={{
-                        flexGrow: 1,
-                        ml: 1
-                      }}
-                      variant="body1"
-                      color="black"
-                    >
-                      <Scroll
-                        to="top"
-                        smooth={true}
-                        duration={600}
-                        offset={-64}
-                      >
-                        SuiSui’s Portfolio
-                      </Scroll>
-                    </Typography>
-                  </> 
                 }
-                {/** スマートフォン以外の表示 */}
-                {!media.isMobileScreen && 
+                {/** headerResponsiveEdgeのときのみ表示 */}
+                {!media.headerResponsiveEdge && 
                   <>
                     {/** プロフィールボタン */}
                     <Button

@@ -9,7 +9,7 @@ import customMedia from "components/utils/styledMediaConfig";
 
 const Skill = () => { 
   const HardSkill = () => (
-    <>
+    <Contents>
       <PStyle>
         ■ 言語: Python(Flask) / C# / JavaScript(React) / Node.js / HTML / CSS
       </PStyle>
@@ -43,11 +43,11 @@ const Skill = () => {
       <PStyle>
         ■ 顧客ヒアリングからの一貫したアプリケーション開発
       </PStyle>
-    </>
+    </Contents>
   )
 
   const SoftSkill = () => (
-    <>
+    <Contents>
       <PStyle>
         ■ コミュニケーション: 相手を尊重することと自分からネガティブな発言を極力しないことを意識しています。
       </PStyle>
@@ -66,7 +66,7 @@ const Skill = () => {
       <PStyle>
         ■ リモートワーク: 現在は、ほぼフルリモートで勤務中のため慣れています。しかしながら、チーム開発では対面コニュニケーションのメリットも大きいと感じています。
       </PStyle>
-    </>
+    </Contents>
   )
   
   return (
@@ -149,7 +149,7 @@ const Skill = () => {
 
 // スキルCSS
 const SkillStyle = styled.div`
-  height: calc(100vh - 65px);
+  min-height: calc(100vh - 65px);
   background-color: #F7F8FA;
 
   ${customMedia.lessThan("pc")`
@@ -171,8 +171,14 @@ const SubTitle = styled.div`
   font-family: "Hiragino Sans", "ヒラギノ角ゴシック";
   font-size: 20px;
   margin: 0;
-  padding: 20px 0 20px 0;
+  padding: 10px 0 20px 0;
   text-align: center;
+`;
+
+// コンテンツCSS
+const Contents = styled.div`
+  margin: 15px 0 40px 20px;
+  padding: 0;
 `;
 
 // パラグラフCSS
@@ -183,7 +189,11 @@ const PStyle = styled.p`
   line-height: 1.5;
 
   ${customMedia.lessThan("pc")`
-    margin: 0 70px 13px 70px;
+    margin: 0 10px 13px 10px;
+  `};
+
+  ${customMedia.lessThan("tablet")`
+    margin: 0 30px 13px 20px;
   `};
 
   ${customMedia.lessThan("mobile")`
