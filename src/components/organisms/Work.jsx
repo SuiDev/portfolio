@@ -22,7 +22,7 @@ const Work = () => (
           {media =>
             <>
               {media.isPCScreen ?
-                // PC表示のとき
+                // タブレットサイズ以上のとき
                 <>
                   <Grid
                     container
@@ -56,7 +56,7 @@ const Work = () => (
                   </Grid>
                 </>
                 :
-                // PC以外の表示のとき
+                // タブレットサイズ以下のとき
                 <>
                   <Grid
                     container
@@ -108,7 +108,7 @@ const Work = () => (
 
 // 製作アプリ全体CSS
 const WorkStyle = styled.div`
-  height: calc(100vh - 65px);
+  min-height: calc(100vh - 65px);
   background-color: white;
   text-align: center;
 

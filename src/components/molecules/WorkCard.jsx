@@ -12,9 +12,9 @@ const WorkCard = (props) => (
   <Card 
     sx={{
       maxWidth: 400,
-      minHeight: 530,
+      minHeight: 540,
       height: "65vh",
-      margin: "0 0 30px 0"
+      margin: "0 10px 30px 10px"
     }}
   >
     {/** カードがクリックされたとき、指定したURLへ遷移します。 */}
