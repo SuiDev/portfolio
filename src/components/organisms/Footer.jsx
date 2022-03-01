@@ -11,6 +11,7 @@ const Footer = () => (
 
 // フッターCSS
 const FooterStyle = styled.div`
+  font-family: "Hiragino Sans","ヒラギノ角ゴシック";
   font-size: 12px;
   margin: 0;
   padding: 12px 0 12px 0;
