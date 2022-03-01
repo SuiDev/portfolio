@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
+import { MediaContext } from "components/pages/Home";
 import useGetWindowSize from "components/utils/useGetWindowSize";
-import topImage from "assets/top_image.jpg";
+import topImagePC from "assets/top_image_pc.jpg";
+import topImageMobile from "assets/top_image_mobile.jpg";
 
 const Top = () => {
   const { width, height } = useGetWindowSize();
@@ -13,17 +15,45 @@ const Top = () => {
         <div
           id="top"
         >
-          <img
-            alt="トップ画像"
-            src={topImage}
-            width={"100%"}
-            height={height - 65}
-          />
-          <MainMessageStyle>
-            ユーザーが快適に使えるサービスを追求し
-            <br />
-            社会貢献したい
-          </MainMessageStyle>
+          <MediaContext.Consumer>
+            {media =>
+              <>
+                {!media.isMobileScreen ?
+                  // スマホ以外のとき
+                  <>
+                    <img
+                      alt="トップ画像"
+                      src={topImagePC}
+                      width={"100%"}
+                      height={height - 65}
+                    />
+                    <MainMessageStyle>
+                      ユーザーが快適に使えるサービスを追求し
+                      <br />
+                      社会貢献したい
+                    </MainMessageStyle>
+                  </>
+                  :
+                  // スマホのとき
+                  <>
+                    <img
+                      alt="トップ画像"
+                      src={topImageMobile}
+                      width={"100%"}
+                      height={height - 65}
+                    />
+                    <MainMessageStyle>
+                      ユーザーが快適に使える
+                      <br />
+                      サービスを追求し
+                      <br />
+                      社会貢献したい
+                    </MainMessageStyle>
+                  </>
+                }
+              </>
+            }
+          </MediaContext.Consumer>
         </div>
       </TopStyle>
     </>

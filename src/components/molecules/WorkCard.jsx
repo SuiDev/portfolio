@@ -12,13 +12,14 @@ const WorkCard = (props) => (
   <Card 
     sx={{
       maxWidth: 400,
-      height: "65vh"
+      minHeight: 530,
+      height: "65vh",
+      margin: "0 0 30px 0"
     }}
   >
     {/** カードがクリックされたとき、指定したURLへ遷移します。 */}
     <Link
-      // TODO: リンクを差し替える。
-      to={`/work/${props.name}`}
+      to={props.url}
       style={{
         textDecoration: "none",
         color: "black"

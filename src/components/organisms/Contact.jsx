@@ -1,4 +1,5 @@
 import React, { forwardRef, useState } from "react";
+import axios from "axios";
 
 /** Material UI Modules */
 import Box from "@mui/material/Box";
@@ -9,7 +10,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
-import axios from "axios";
+import { MediaContext } from "components/pages/Home";
 
 const Contact = forwardRef((props, ref) => {
   // 会社名の入力値の保持
@@ -67,113 +68,153 @@ const Contact = forwardRef((props, ref) => {
     }
   }
 
+  const Contents = () => (
+    <>
+      <Stack
+      spacing={4}
+      mt={1}
+      >
+        <Typography
+          variant="h6"
+          component="h2"
+        >
+          お問い合わせフォーム
+        </Typography>
+        <Typography
+          sx={{
+            mt: 2
+          }}
+        >
+          連絡をご希望の方は、必須項目を入力のうえ
+          <br />
+          送信をお願いいたします。
+        </Typography>
+        <TextField
+          id="company"
+          label="会社名"
+          variant="standard"
+          required
+          value={company}
+          onChange={handleSetCompany}
+        />
+        <TextField
+          id="name"
+          label="お名前"
+          variant="standard"
+          required
+          value={name}
+          onChange={handleSetName}
+        />
+        <TextField
+          id="mail"
+          label="メールアドレス"
+          variant="standard"
+          required
+          value={mail}
+          onChange={handleSetMail}
+        />
+        <TextField
+          id="discription"
+          label="お問い合わせ内容"
+          variant="standard"
+          required
+          value={content}
+          onChange={handleSetContent}
+          multiline
+          rows={8}
+        />
+      </Stack>
+      <Stack
+        direction="row"
+        spacing={3}
+      >
+        {/** キャンセルボタン */}
+        <Button
+          ref={ref}
+          sx={{ 
+            width: "50%"
+          }}
+          variant="outlined"
+          color="secondary"
+          startIcon={<CancelIcon />}
+          onClick={() => {
+            props.setHasOpenContact(false)
+          }}
+        >
+          キャンセル
+        </Button>
+        {/** 送信ボタン */}
+        <Button
+          sx={{
+            width: "50%"
+          }}
+          variant="contained"
+          endIcon={<SendIcon />}
+          onClick={() => {
+            handleSendMessage()
+          }}
+        >
+          送信
+        </Button>
+      </Stack>
+    </>
+  );
+
   return (
     <>
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 400,
-          bgcolor: "background.paper",
-          boxShadow: 500,
-          p: 5,
-          textAlign: "center",
-          "& .MuiTextField-root": {
-            m: 1,
-            width: "400px",
-          }
-        }}
-      >
-        <Stack
-          spacing={4}
-          mt={1}
-        >
-          <Typography
-            variant="h6"
-            component="h2"
-          >
-            お問い合わせフォーム
-          </Typography>
-          <Typography
-            sx={{
-              mt: 2
-            }}
-          >
-            連絡をご希望の方は、必須項目を入力のうえ
-            <br />
-            送信をお願いいたします。
-          </Typography>
-          <TextField
-            id="company"
-            label="会社名"
-            variant="standard"
-            required
-            value={company}
-            onChange={handleSetCompany}
-          />
-          <TextField
-            id="name"
-            label="お名前"
-            variant="standard"
-            required
-            value={name}
-            onChange={handleSetName}
-          />
-          <TextField
-            id="mail"
-            label="メールアドレス"
-            variant="standard"
-            required
-            value={mail}
-            onChange={handleSetMail}
-          />
-          <TextField
-            id="discription"
-            label="お問い合わせ内容"
-            variant="standard"
-            required
-            value={content}
-            onChange={handleSetContent}
-            multiline
-            rows={8}
-          />
-        </Stack>
-        <Stack
-          direction="row"
-          spacing={3}
-        >
-          {/** キャンセルボタン */}
-          <Button
-            ref={ref}
-            sx={{ 
-              width: "50%"
-            }}
-            variant="outlined"
-            color="secondary"
-            startIcon={<CancelIcon />}
-            onClick={() => {
-              props.setHasOpenContact(false)
-            }}
-          >
-            キャンセル
-          </Button>
-          {/** 送信ボタン */}
-          <Button
-            sx={{
-              width: "50%"
-            }}
-            variant="contained"
-            endIcon={<SendIcon />}
-            onClick={() => {
-              handleSendMessage()
-            }}
-          >
-            送信
-          </Button>
-        </Stack>
-      </Box>
+      <MediaContext.Consumer>
+        {media =>
+          <>
+            {!media.isMobileScreen ?
+              // スマホ以外のとき
+              <>
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: 400,
+                    bgcolor: "background.paper",
+                    boxShadow: 500,
+                    p: 5,
+                    textAlign: "center",
+                    "& .MuiTextField-root": {
+                      m: 1,
+                      width: "400px",
+                    }
+                  }}
+                >
+                  <Contents />
+                </Box>
+              </>
+              :
+              // スマホのとき
+              <>
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: "80%",
+                    bgcolor: "background.paper",
+                    boxShadow: 500,
+                    p: 5,
+                    textAlign: "center",
+                    "& .MuiTextField-root": {
+                      m: 1,
+                      width: "100%",
+                    }
+                  }}
+                >
+                  <Contents />
+                </Box>
+              </>
+            }
+          </>
+        }
+      </MediaContext.Consumer>
     </>
   )
 });
