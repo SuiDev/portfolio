@@ -10,8 +10,8 @@ const PortfolioSite = () => (
       url="https://suidev.github.io/portfolio/"
       description="
         本サイトをスクラッチ開発しました。
-        サーバーサイドのポジションを目指しているため、UIを考えながらも短時間で作成することに決め5日(約30時間)で作成しました。
-        デプロイをGitHub Pages、開発をReactにてMaterial UIを積極的に利用しています。
+        サーバーサイドのポジションを目指しているため、UIを考えながらも短時間で作成することに決め1週間(約35時間)で作成しました。
+        デプロイはGitHub Pagesを使い、開発はReactにてMaterial UIを積極的に利用しています。
         "
     />
   </>

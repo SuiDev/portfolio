@@ -1,11 +1,10 @@
-import React, { lazy } from "react";
+import React, { lazy, useState } from "react";
 import { Link as Scroll } from "react-scroll";
 
 /** Material UI Modules */
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 
@@ -14,7 +13,7 @@ const Contact = lazy(() => import("components/organisms/Contact"));
 
 const Header = () => {
   // お問い合わせモーダルの状態管理
-  const [hasOpenContact, setHasOpenContact] = React.useState(false);
+  const [hasOpenContact, setHasOpenContact] = useState(false);
   const handleContactOpen = () => setHasOpenContact(true);
   // モーダルの外側をクリックしても閉じないように抑制します。
   const handleContactClose = (event, reason) => {
@@ -195,17 +194,11 @@ const Header = () => {
                   </>
                 }
                 {/** お問い合わせモーダル */}
-                <Modal
-                  open={hasOpenContact}
-                  onClose={handleContactClose}
-                  aria-labelledby="modal-contact"
-                  aria-describedby="modal-contact"
-                  disableEnforceFocus
-                >
-                  <Contact
-                    setHasOpenContact={setHasOpenContact}
-                  />
-                </Modal>
+                <Contact
+                  hasOpenContact={hasOpenContact}
+                  onDialogClose={handleContactClose}
+                  setHasOpenContact={setHasOpenContact}
+                />
               </Toolbar>
             </AppBar>
             <Toolbar />
