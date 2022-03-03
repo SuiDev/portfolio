@@ -144,7 +144,7 @@ const About = () => {
                               alt="Twitterアイコン"
                               src={TwitterIcon}
                               width={54}
-                              height={42}
+                              height={44}
                             />
                           </a>
                         </LinkIcons>
