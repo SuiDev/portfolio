@@ -10,7 +10,7 @@ const TaskApp = () => (
       title="タスク管理アプリ(作成中)"
       url="https://suidev.github.io/portfolio/"
       description="
-        現在、作成中です。
+        作成完了後、公開予定です。
       "
     />
   </>
